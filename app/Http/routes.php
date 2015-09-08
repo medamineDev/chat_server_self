@@ -17,7 +17,7 @@ Route::get('home', 'HomeController@index');
 
 Route::get('socket', 'SocketController@index');
 Route::post('sendmessage', 'SocketController@sendMessage');
-Route::get('writemessage', 'SocketController@writemessage');
+Route::get('chat', 'SocketController@writemessage');
 
 
 
