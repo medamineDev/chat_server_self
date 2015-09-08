@@ -132,6 +132,11 @@
 
         $(document).ready(function () {
 
+
+
+            //var url = window.location.href;
+            var url = window.location.host ;
+            console.log("current utl ---->"+url);
             // var host = "http://localhost:8000/";
 
             $('#send_form').on('submit', function (e) {

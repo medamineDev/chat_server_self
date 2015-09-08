@@ -65,10 +65,7 @@
     <script language="javascript">
         //var socket = io.connect('http://localhost:8890');
         var socket = io.connect('http://192.168.0.105:8890');
-
         socket.on('message', function (js_data) {
-            //  var data = JSON.parse(js_data);
-            // var current_user = $('meta[name="logged_user"]').attr('content');
             console.log("message --->" + js_data);
 
             $("#messages").append("<div class='message animation-slideUp'> <div><label class='sender_label'>New Message : <span class='sender_span'>" + js_data + "</span></label></div></div>");

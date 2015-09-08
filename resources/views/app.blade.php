@@ -33,9 +33,6 @@
     <script src="{{ URL::asset('libs/js/bootstrap.min.js') }}"></script>
 
 
-
-
-
     @yield("css")
 
 
@@ -85,15 +82,21 @@
 
 <script language="javascript">
 
-    var host = "http://192.168.0.105:8000/";
-    var socket = io.connect('http://192.168.0.105:8890');
+    var host2 = "http://192.168.0.105:8000/";
+    var host = "http://"+window.location.host;
+    var sock_host = window.location.hostname;
+
+    console.log("host ---->" + host);
+    console.log("host2 ---->" + host2);
+    console.log("sock_host ---->" + sock_host);
+    var socket = io.connect(sock_host + ':8890');
 
 
     function get_logged_user(_callback) {
 
         $.ajax({
             type: "GET",
-            url: host + 'get_logged_user',
+            url: host + '/get_logged_user',
             data: {}
         }).done(function (response) {
 
