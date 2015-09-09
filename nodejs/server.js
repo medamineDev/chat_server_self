@@ -64,6 +64,21 @@ app.all('/*', function (req, res, next) {
  });*/
 
 
+
+/* run forever
+
+
+ npm install forever -g
+
+ forever start server.js
+
+
+
+ */
+
+
+
+
 var users = [];
 
 io.sockets.on('connection', function (socket) {
@@ -103,7 +118,7 @@ io.sockets.on('connection', function (socket) {
         var len = 0;
         for (var i = 0, len = users.length; i < len; ++i) {
             var p = users[i];
-            console.log("iside loop");
+            console.log("inside loop");
             if (p.id == id_user) {
                 console.log("user found !");
 

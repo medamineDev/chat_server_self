@@ -28,9 +28,16 @@
     <link rel="stylesheet" href="{{ URL::asset('libs/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('libs/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('libs/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('libs/css/mycss.css') }}">
 
     <script src="{{ URL::asset('libs/js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('libs/js/bootstrap.min.js') }}"></script>
+
+
+
+
+
+
 
 
     @yield("css")
@@ -85,7 +92,6 @@
     var host2 = "http://192.168.0.105:8000/";
     var host = "http://"+window.location.host;
     var sock_host = window.location.hostname;
-
     console.log("host ---->" + host);
     console.log("host2 ---->" + host2);
     console.log("sock_host ---->" + sock_host);
@@ -100,7 +106,7 @@
             data: {}
         }).done(function (response) {
 
-            console.log(response.user_id)
+            console.log(response.user_id);
             var logged_user_id = response.user_id;
 
             _callback(logged_user_id);
@@ -120,11 +126,6 @@
 
 
 @yield('js')
-
-        <!-- Scripts -->
-{{--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
---}}
 
 
 </body>
