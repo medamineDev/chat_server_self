@@ -151,7 +151,7 @@
             console.log("message --->" + js_data);
 
             $('#msgs').append('<div class="sender_msg animation-stretchRight"><img class="sender_path" ' +
-                    'src=' + receiver_avatar + '/>&nbsp;&nbsp;&nbsp;' + js_data + '</div>');
+                    'src=' + receiver_avatar + '>&nbsp;&nbsp;&nbsp;' + js_data + '</div>');
 
 
         });
