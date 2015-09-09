@@ -72,72 +72,6 @@
             <div class="col-md-6 col-md-offset-1">
 
                 <div class="chat_panel ">
-                    {{--<div class="panel-heading">Send message</div>--}}
-
-                    {{--<form method="POST" id="send_form" style="margin-left: -118px;">--}}
-
-
-
-
-                    {{--<div class="btn-group" role="group" aria-label="...">--}}
-
-                    {{--<div class="btn-group" role="group">--}}
-                    {{--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"--}}
-                    {{--aria-haspopup="true" aria-expanded="false">--}}
-                    {{--<div id="choosen_user">User</div>--}}
-                    {{--<span class="caret"></span>--}}
-                    {{--</button>--}}
-
-
-                    {{--<!-- When this element is clicked, hide the tooltip -->--}}
-                    {{--<div id="main">--}}
-
-                    {{--<!-- This is the tooltip. It is shown only when the showtooltip variable is truthful -->--}}
-                    {{--<div class="user_tooltip  animation-slideExpandUp">--}}
-
-
-                    {{--<ul>--}}
-
-
-                    {{--@foreach($users as $user)--}}
-
-                    {{--<li><a href="javascript:void(0)"--}}
-                    {{--onclick="set_user('{{ $user->id }}','{{ $user->name }}')"><img--}}
-                    {{--src="{{ $user->avatar }}"></a>--}}
-                    {{--</li>--}}
-
-                    {{--@endforeach--}}
-
-
-                    {{--</ul>--}}
-
-
-                    {{--</div>--}}
-
-
-                    {{--<img class="search_str_header">--}}
-
-                    {{--</div>--}}
-
-
-                    {{--<ul class="dropdown-menu" style="display: none">--}}
-                    {{--@foreach($users as $user)--}}
-
-                    {{--<li><a href="javascript:void(0)"--}}
-                    {{--onclick="set_user('{{ $user->id }}','{{ $user->name }}')">{{ $user->name }}</a>--}}
-                    {{--</li>--}}
-
-                    {{--@endforeach--}}
-
-
-                    {{--</ul>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--  <input type="text" class="send_txt" name="message">
-                      <input type="submit" class="send_bt" value="send">--}}
-                    {{--</form>--}}
-                    {{--<ul>--}}
 
 
                     <div class="msg_bar">
@@ -146,11 +80,9 @@
                         <div id="msgs_area" class="msgs_area">
 
                             <div id="msgs">
-                                <div class="current_user_msg animation-stretchLeft">Me hello</div>
-                                <div class="sender_msg animation-stretchRight"><img class="sender_path"
-                                                                                    src="{{ asset('/imgs/avatar.png') }}"/>&nbsp;&nbsp;&nbsp;
-                                    sender hiii
-                                </div>
+
+
+
 
                             </div>
 
@@ -217,8 +149,6 @@
         socket.on('message', function (js_data) {
 
             console.log("message --->" + js_data);
-            // $("#messages").append("<div class='message animation-slideUp'> <div><label class='sender_label'>New Message : <span class='sender_span'>" + js_data + "</span></label></div></div>");
-
 
             $('#msgs').append('<div class="sender_msg animation-stretchRight"><img class="sender_path" ' +
                     'src=' + receiver_avatar + '/>&nbsp;&nbsp;&nbsp;' + js_data + '</div>');
