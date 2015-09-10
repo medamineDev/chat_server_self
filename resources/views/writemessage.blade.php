@@ -141,6 +141,7 @@
         socket.on('is_typing', function (js_data) {
             $('.is_typing').html(js_data + ' is typing');
 
+            console.log(js_data + ' is typing');
             if (!is_typing_flag) {
 
                 $('.is_typing').animate({'opacity': 1}, 500);
