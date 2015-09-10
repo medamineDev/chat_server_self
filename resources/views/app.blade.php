@@ -34,12 +34,6 @@
     <script src="{{ URL::asset('libs/js/bootstrap.min.js') }}"></script>
 
 
-
-
-
-
-
-
     @yield("css")
 
 
@@ -89,12 +83,14 @@
 
 <script language="javascript">
 
-    var host2 = "http://192.168.0.105:8000/";
-    var host = "http://"+window.location.host;
+
+    var host = "http://" + window.location.host;
     var sock_host = window.location.hostname;
     console.log("host ---->" + host);
-    console.log("host2 ---->" + host2);
     console.log("sock_host ---->" + sock_host);
+    var logged_user = [];
+
+
     var socket = io.connect(sock_host + ':8890');
 
 
@@ -108,16 +104,16 @@
 
             console.log(response.user_id);
             var logged_user_id = response.user_id;
-
-            _callback(logged_user_id);
+            _callback(response);
 
         });
 
     }
 
-    get_logged_user(function (logged_user_id) {
+    get_logged_user(function (response) {
 
-        socket.emit('chat_init', logged_user_id);
+        logged_user = response;
+        socket.emit('chat_init', response.user_id);
 
     });
 

@@ -82,15 +82,17 @@
                             <div id="msgs">
 
 
-
-
                             </div>
+
 
                         </div>
 
 
                         <div>
-                            <input type="text" id=msg_txt" class="msg_txt" placeholder="Enter your message"/>
+
+                            <div class="is_typing" style="margin-left: -251px;"></div>
+                            <input onkeypress="is_typing()" type="text" id=msg_txt" class="msg_txt"
+                                   placeholder="Enter your message"/>
 
                             <button onclick="send_message()" class="send_btn">Send</button>
                         </div>
@@ -110,27 +112,6 @@
 
 
 
-
-
-
-
-
-
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-
-                <div id="messages"></div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
 @endsection
 
 
@@ -145,10 +126,10 @@
         var receiver_name = "";
         var receiver_id = "";
         var receiver_avatar = "";
+        var is_typing_flag = false;
 
+        $('.msg_txt').val("");
         socket.on('message', function (js_data) {
-
-            console.log("message --->" + js_data);
 
             $('#msgs').append('<div class="sender_msg animation-stretchRight"><img class="sender_path" ' +
                     'src=' + receiver_avatar + '>&nbsp;&nbsp;&nbsp;' + js_data + '</div>');
@@ -157,17 +138,43 @@
         });
 
 
+        socket.on('is_typing', function (js_data) {
+            $('.is_typing').html(js_data + ' is typing');
 
+            if (!is_typing_flag) {
+
+                $('.is_typing').animate({'opacity': 1}, 500);
+                is_typing_flag = true;
+
+                setTimeout(function () {
+                    is_typing_flag = false;
+                    $('.is_typing').animate({
+                        'opacity': 0
+                    }, 500);
+                }, 1000);
+
+
+            }
+
+
+        });
 
 
         function send_message() {
 
 
             var msg = $('.msg_txt').val();
-            console.log("message -------->"+msg);
             $('#msgs').append('<div class="current_user_msg animation-stretchLeft">' + msg + '</div>');
-
             socket.emit('message', msg, receiver_id);
+            $('.msg_txt').val("");
+
+
+        }
+
+
+        function is_typing() {
+
+            socket.emit('is_typing', logged_user.user_name, receiver_id);
 
 
         }
@@ -180,12 +187,13 @@
             $('#' + id).addClass("active_user");
             $('#choosen_user').html(user_name);
             console.log("id ---> " + id);
+            console.log("name ---> " + user_name);
             console.log("avatar --->" + user_avatar);
-
             receiver_id = id;
-            receiver_name = user_name;
             receiver_avatar = user_avatar;
+
         }
+
     </script>
 
 @endsection

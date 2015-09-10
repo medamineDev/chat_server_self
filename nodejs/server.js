@@ -129,4 +129,26 @@ io.sockets.on('connection', function (socket) {
         }
     });
 
+
+    socket.on('is_typing', function (name, id_user) {
+
+        console.log(id_user+" is typing");
+
+        //io.to(3799).emit('message', data);
+
+
+        var len = 0;
+        for (var i = 0, len = users.length; i < len; ++i) {
+            var p = users[i];
+            console.log("inside loop");
+            if (p.id == id_user) {
+                console.log("user found !");
+
+                //io.sockets.socket(p.socket).emit('message', data);
+                io.to(p.socket).emit('is_typing', name);
+                break;
+            }
+        }
+    });
+
 });
