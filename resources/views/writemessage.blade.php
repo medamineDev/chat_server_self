@@ -51,20 +51,32 @@
 
             <div class="col-md-4 user_list_chat">
 
-
                 <ul>
-                    @foreach($users as $user)
 
-                        <li class="user_chat animation-slideExpandUp" id='{{ $user->id }}'><a href="javascript:void(0)"
-                                                                                              onclick="set_user('{{ $user->id }}','{{ $user->name }}','{{ $user->avatar }}')"><img
-                                        title="{{ $user->name  }}"
-                                        src="{{ $user->avatar }}" class="user_avatar"></a>
-                        </li>
+                    <li class="user_chat animation-slideExpandUp" id='1'><a href="javascript:void(0)"
+                                                                            onclick="set_user('1','amine','http://joseph-m-jones.me/wp-content/uploads/2013/04/avatar.jpg')"><img
+                                    title="amine"
+                                    src="http://joseph-m-jones.me/wp-content/uploads/2013/04/avatar.jpg"
+                                    class="user_avatar"></a>
+                    </li>
 
-                    @endforeach
+                    <li class="user_chat animation-slideExpandUp" id='2'><a href="javascript:void(0)"
+                                                                            onclick="set_user('2','kamel','http://jensbuch.com/wp-content/uploads/2009/11/Jens_Buch_Avatar.png')"><img
+                                    title="kamel"
+                                    src="http://www.estetica-design-forum.com/customavatars/avatar81373_2.gif"
+                                    class="user_avatar"></a>
+                    </li>
+
+                    <li class="user_chat animation-slideExpandUp" id='3'><a href="javascript:void(0)"
+                                                                            onclick="set_user('3','ali','https://cdn4.iconfinder.com/data/icons/avataria/512/avatar_32-01-512.png')"><img
+                                    title="ali"
+                                    src="https://cdn4.iconfinder.com/data/icons/avataria/512/avatar_32-01-512.png"
+                                    class="user_avatar"></a>
+                    </li>
 
 
                 </ul>
+
 
             </div>
 
@@ -128,6 +140,9 @@
         var receiver_avatar = "";
         var is_typing_flag = false;
 
+        var logged_user_name = "";
+        var logged_user_id = "";
+
         $('.msg_txt').val("");
         socket.on('message', function (js_data) {
 
@@ -166,7 +181,7 @@
 
             var msg = $('.msg_txt').val();
             $('#msgs').append('<div class="current_user_msg animation-stretchLeft">' + msg + '</div>');
-            socket.emit('message', msg, receiver_id);
+            socket.emit('message', msg,logged_user_id, receiver_id);
             $('.msg_txt').val("");
 
 
@@ -175,8 +190,24 @@
 
         function is_typing() {
 
-            socket.emit('is_typing', logged_user.user_name, receiver_id);
+            socket.emit('is_typing', logged_user_name, receiver_id);
 
+
+        }
+
+
+        function set_my_id(id, user_name, user_avatar) {
+
+
+            // $('.user_chat').removeClass("active_user");
+            //$('#' + id).addClass("active_user");
+            $('#choosen_user').html(user_name);
+            console.log("my_id ---> " + id);
+            console.log("my_name ---> " + user_name);
+            console.log("my_avatar --->" + user_avatar);
+            logged_user_name = user_name;
+            logged_user_id =id;
+            socket.emit('chat_init', id);
 
         }
 

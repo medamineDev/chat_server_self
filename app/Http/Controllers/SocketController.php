@@ -17,27 +17,12 @@ class SocketController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('guest');
-        $this->middleware('auth');
+        $this->middleware('guest');
+        //$this->middleware('auth');
     }
 
     public function index()
     {
-
-        // $users = User::all();
-
-        // $users = array("from" => "amine", "to" => "salem", "msg" => "hello Salem");
-
-
-        //return view('socket', ['$users' => $users]);
-        //return View::make('socket', ['$users' => $users]);
-
-        /*
-                $users = User::all();
-
-                $one_user = user::find(2);
-
-                // return view("articles", compact("articles"));*/
 
         $userId = Auth::id();
         $useremail = Auth::user()->email;
@@ -49,7 +34,6 @@ class SocketController extends Controller
         ]);
 
 
-        //return view('socket');
 
     }
 
@@ -61,7 +45,7 @@ class SocketController extends Controller
             "users" => $users
         ]);
 
-        // return view('writemessage');
+
 
     }
 
@@ -105,16 +89,6 @@ class SocketController extends Controller
 
         return redirect('writemessage');
 
-        /*
-
-
-                $msg_arr = array("from" => $userName, "to" => "salem", "msg" => "hello Salem");
-
-
-                //$redis->publish('message', Request::input('message'));
-                $redis->publish('message', json_encode($msg_arr));
-
-                return redirect('writemessage');*/
 
     }
 

@@ -40,13 +40,9 @@ section, footer, header, aside, nav {
     background-color: #D7E0DC;
     margin-left: -120px;
 
-
-
 }
 
-
-.user_list_chat{
-
+.user_list_chat {
 
     margin-left: 290px;
     overflow-y: scroll;
@@ -57,15 +53,12 @@ section, footer, header, aside, nav {
 
 }
 
-.user_avatar{
+.user_avatar {
 
     margin-left: 333px;
 }
 
-
-
-
-.chat{
+.chat {
     margin-left: -57px;
     overflow-y: scroll;
     max-height: 432px;
@@ -203,7 +196,7 @@ section, footer, header, aside, nav {
     position: relative;
 }
 
-.sender_path{
+.sender_path {
     width: 39px;
     height: 39px;
     border-radius: 6px 15px 13px 43px;
@@ -221,7 +214,10 @@ section, footer, header, aside, nav {
     padding: 10px;
     padding-left: 16px;
     color: white;
-    background-image: url("http://t0.gstatic.com/images?q=tbn:ANd9GcRvEwyQDfzDmXoP9z0kCp9mzqt3pFqMzdBNyno8vp5KgI_A43z0GA");
+
+    background-color: #74A275;
+
+    /*background-image: url("http://t0.gstatic.com/images?q=tbn:ANd9GcRvEwyQDfzDmXoP9z0kCp9mzqt3pFqMzdBNyno8vp5KgI_A43z0GA");*/
 }
 
 .current_user_msg {
@@ -235,8 +231,9 @@ section, footer, header, aside, nav {
     margin-top: 8px;
     padding-right: 35px;
     color: rgba(8, 1, 1, 0.96);
-    background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQKXP3MjBApYh5pQmMrbwbHmOMGg_oDDNove2yWZNbpP1Yt9lG1");
+    /* background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQKXP3MjBApYh5pQmMrbwbHmOMGg_oDDNove2yWZNbpP1Yt9lG1");*/
     margin-left: 156px;
+    background-color: #5594B0;
 }
 
 .msgs_area {
@@ -265,12 +262,11 @@ section, footer, header, aside, nav {
     font-weight: 500;
     font-size: medium;
 
-    background-image: url('http://7-themes.com/data_images/out/10/6800442-light-blue-wallpaper.jpg');
+    /*background-image: url('http://7-themes.com/data_images/out/10/6800442-light-blue-wallpaper.jpg');*/
 
 }
 
 .console {
-
 
     border: none;
     width: 373px;
@@ -288,8 +284,8 @@ section, footer, header, aside, nav {
     max-height: 350px;
     overflow-x: hidden;
 
-//color: #5A492F;
-// background-color: #e5efff;
+/ / color : #5A492F;
+/ / background-color : #e5efff;
     text-align: start;
     line-height: inherit;
     font-family: serif;
@@ -301,7 +297,7 @@ section, footer, header, aside, nav {
 
 }
 
-.set_red{
+.set_red {
 
     background-color: rgba(97, 255, 81, 0.4);
 }
@@ -375,7 +371,6 @@ ul li p {
     color: #6e7a7f;
 }
 
-
 .user_chat:hover {
     background-color: rgba(212, 208, 208, 0.39);
     cursor: pointer;
@@ -399,9 +394,7 @@ ul li p {
     animation: fadeOutUp 1s;
 }
 
-
 .active_user {
-
 
     background-color: rgba(91, 169, 66, 0.18);
     opacity: 1;
@@ -412,7 +405,6 @@ ul li p {
     border-left: 2px solid #5796B2;
 
 }
-
 
 .deactivate_user {
 
@@ -425,7 +417,6 @@ ul li p {
 }
 
 .user_chat {
-
 
     -webkit-transition: all 0.3s ease-out 0s;
     -moz-transition: all 0.3s ease-out 0s;
@@ -443,7 +434,6 @@ ul li p {
     border-left: 2px solid #5796B2;
 
 }
-
 
 .user_chat2:active {
     opacity: 1;

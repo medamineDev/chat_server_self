@@ -64,7 +64,7 @@ return [
 			'strict'    => false,
 		],*/
 
-      'mysql' => [
+     'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'web.anypli.com'),
             'database'  => env('DB_DATABASE', 'homestead'),

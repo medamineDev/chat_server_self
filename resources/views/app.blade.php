@@ -54,10 +54,52 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/') }}">Home</a></li>
+                {{--<li><a href="{{ url('/') }}">Home</a></li>--}}
+
+
+
+
+                <li class="user_chat animation-slideExpandUp" ><a href="javascript:void(0)"
+                                                                        onclick="set_my_id('1','amine','http://joseph-m-jones.me/wp-content/uploads/2013/04/avatar.jpg')"><img
+                                title="amine"
+                                src="http://joseph-m-jones.me/wp-content/uploads/2013/04/avatar.jpg" ></a>
+                </li>
+
+                <li class="user_chat animation-slideExpandUp" ><a href="javascript:void(0)"
+                                                                        onclick="set_my_id('2','kamel','http://jensbuch.com/wp-content/uploads/2009/11/Jens_Buch_Avatar.png')"><img
+                                title="kamel"
+                                src="http://www.estetica-design-forum.com/customavatars/avatar81373_2.gif" ></a>
+                </li>
+
+                <li class="user_chat animation-slideExpandUp" ><a href="javascript:void(0)"
+                                                                        onclick="set_my_id('3','ali','https://cdn4.iconfinder.com/data/icons/avataria/512/avatar_32-01-512.png')"><img
+                                title="ali"
+                                src="https://cdn4.iconfinder.com/data/icons/avataria/512/avatar_32-01-512.png" ></a>
+                </li>
+
+
+
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+
+            <ul class="nav navbar-nav navbar-right" style="display: none">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">test <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+
+                        </ul>
+                    </li>
+
+            </ul>
+
+
+
+
+
+            <ul class="nav navbar-nav navbar-right" style="display: none">
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
@@ -110,12 +152,12 @@
 
     }
 
-    get_logged_user(function (response) {
+   /* get_logged_user(function (response) {
 
         logged_user = response;
         socket.emit('chat_init', response.user_id);
 
-    });
+    });*/
 
 
 </script>
