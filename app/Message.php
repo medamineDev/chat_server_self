@@ -2,10 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
-{
+class Message extends Model {
 
-    protected $table = 'users';
+
+    protected $table = 'messages';
     public $timestamps = false;
+
+
 
 }
