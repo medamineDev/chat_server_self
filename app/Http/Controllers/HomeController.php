@@ -132,10 +132,10 @@ class HomeController extends Controller
     function login_api()
     {
 
-        $user_mail = Input::get('user_mail');
+
         $user_phone = Input::get('user_phone');
 
-        $user = User::where('user_mail', $user_mail)->where('user_phone', $user_phone)->get();
+        $user = User::where('user_phone', $user_phone)->get();
 
         if (!$user->isEmpty()) {
             return Response::json([
