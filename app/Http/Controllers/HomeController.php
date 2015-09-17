@@ -7,6 +7,7 @@ use  Illuminate\Support\Facades\Paginator;
 use App\User;
 use App\Message;
 
+use Illuminate\Http\RedirectResponse;
 use DB;
 
 use Input;
@@ -80,15 +81,10 @@ class HomeController extends Controller
 
         $var = $input = Input::all();
         $var = $input['contacts'];
-
         $arr = explode(",", $var);
-
         $existing_contacts = [];
-
-
         $i = 0;
         $lenght = count($arr) - 1;
-       // $user_phone = "";
 
 
         while ($i <= $lenght) {
@@ -133,45 +129,6 @@ class HomeController extends Controller
     }
 
 
-    public function registered_phones_api2()
-    {
-
-        $input = (object)Input::all();
-        $contacts = $input->contacts;
-
-
-        $existing_contacts = [];
-
-        //$data1 = stripslashes($contacts);
-
-
-        $data = explode(",", $contacts);
-
-
-        foreach ($data as $d) {
-
-
-            $user = User::where('user_phone', stripslashes($d))->get();
-
-            if (!$user->isEmpty()) {
-
-                $user_id = $user[0]->user_id;
-                $existing_contacts[] = array('id' => $user_id, 'number' => $d);
-
-            }
-
-        }
-
-
-        return Response::json([
-            $existing_contacts,
-
-
-        ]);
-
-    }
-
-
     function login_api()
     {
 
@@ -188,10 +145,12 @@ class HomeController extends Controller
 
         } else {
 
-            return Response::json([
-                'status' => "user Not exist"
-            ]);
 
+            $code_header = '400';
+            $header = "login_api_header";
+            return response($header)
+                ->header('status', $code_header)
+                ->header('Content-Type', 'user Not exist');
         }
 
     }
@@ -201,33 +160,31 @@ class HomeController extends Controller
     {
 
 
-        $user_mail = Input::get('user_mail');
         $user_phone = Input::get('user_phone');
-        $user_img = "imgs_avatar.png";
 
 
-        $user_list = User::where('user_mail', $user_mail)->get();
+        $user_list = User::where('user_phone', $user_phone)->get();
 
         if ($user_list->isEmpty()) {
 
             $user = new User();
-            $user->user_mail = $user_mail;
             $user->user_phone = $user_phone;
-            $user->user_image = $user_img;
             $saved = $user->save();
 
             if ($saved) {
+
                 return Response::json([
-                    'status' => true,
-                    'saved_user_id' => $user->id
+                    'status' => 201,
+                    'user_id' => $user->id
                 ]);
 
             } else {
 
-                return Response::json([
-                    'status' => false,
-                    'msg' => "user could not be saved"
-                ]);
+                $code_header = '400';
+                $header = "register_api_header";
+                return response($header)
+                    ->header('status', $code_header)
+                    ->header('Content-Type', 'user could not be saved');
 
             }
         } else {
@@ -236,8 +193,8 @@ class HomeController extends Controller
             $user_id = $user_list[0]->user_id;
 
             return Response::json([
-                'status' => true,
-                'saved_user_id' => $user_id,
+                'status' => 200,
+                'user_id' => $user_id,
                 'msg' => "user mail exists !"
             ]);
 
@@ -266,16 +223,19 @@ class HomeController extends Controller
 
         if ($saved) {
             return Response::json([
-                'status' => true,
-                'msg' => 'message was saved with success !'
+                'status' => 200,
+                'msg' => 'message was saved'
             ]);
 
         } else {
 
-            return Response::json([
-                'status' => false,
-                'msg' => "message was not saved  !"
-            ]);
+
+            $code_header = '400';
+            $header = "send_msg_api_header";
+            return response($header)
+                ->header('status', $code_header)
+                ->header('Content-Type', 'message was not saved');
+
 
         }
 
