@@ -76,6 +76,11 @@ class HomeController extends Controller
     }
 
 
+
+
+
+
+
     public function registered_phones_api()
     {
 

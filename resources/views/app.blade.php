@@ -58,24 +58,17 @@
 
 
 
+                @foreach($users as $user)
 
-                <li class="user_chat animation-slideExpandUp" ><a href="javascript:void(0)"
-                                                                        onclick="set_my_id('1','amine','http://joseph-m-jones.me/wp-content/uploads/2013/04/avatar.jpg')"><img
-                                title="amine"
-                                src="http://joseph-m-jones.me/wp-content/uploads/2013/04/avatar.jpg" ></a>
-                </li>
+                    <li class="user_chat animation-slideExpandUp" ><a
+                                href="javascript:void(0)"
+                                onclick="set_my_id('{{ $user->user_id }}','{{ $user->user_name }}','{{ $user->user_image }}')"><img
+                                    title="{{ $user->user_name  }}"
+                                    src="{{ $user->user_image }}" ></a>
+                    </li>
 
-                <li class="user_chat animation-slideExpandUp" ><a href="javascript:void(0)"
-                                                                        onclick="set_my_id('2','kamel','http://jensbuch.com/wp-content/uploads/2009/11/Jens_Buch_Avatar.png')"><img
-                                title="kamel"
-                                src="http://www.estetica-design-forum.com/customavatars/avatar81373_2.gif" ></a>
-                </li>
+                @endforeach
 
-                <li class="user_chat animation-slideExpandUp" ><a href="javascript:void(0)"
-                                                                        onclick="set_my_id('3','ali','https://cdn4.iconfinder.com/data/icons/avataria/512/avatar_32-01-512.png')"><img
-                                title="ali"
-                                src="https://cdn4.iconfinder.com/data/icons/avataria/512/avatar_32-01-512.png" ></a>
-                </li>
 
 
 
