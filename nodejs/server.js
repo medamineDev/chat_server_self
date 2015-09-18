@@ -8,7 +8,7 @@ server.listen(8890);
 
 app.all('/*', function (req, res, next) {
     // CORS headers
-    res.header('Access-Control-Allow-Origin', 'http://doctorcrm.dev:2772');
+    /* res.header('Access-Control-Allow-Origin', 'http://doctorcrm.dev:2772');*/
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', '*');
@@ -37,18 +37,99 @@ var client = new Client();
 
 var users = [];
 
-io.sockets.on('connection', function (socket) {
 
-    console.log("new user connected ");
+
+var disconnect = function(user){
+
+    var len = 0;
+
+    for (var i = 0, len = users.length; i < len; ++i) {
+        var p = users[i];
+
+        /*if (p.socket == socket.id) {
+            users.splice(i, 1);
+            break;
+        }*/
+        if (p.id == user.id) {
+            console.log(p.id+" user already exist !");
+            users.splice(i, 1);
+            break;
+        }
+    }
+
+    //callback(true);
+    users.push(user);
+
+}
+
+var is_user_connected = function (user) {
+
+    console.log("checking already connected users !" + users.length);
+
+
+    var user_exist = false;
+
+ /*   var i = 0;
+    while (user[i]) {
+        var p = users[i];
+        console.log(user.id + " trying to connect , already connected IDs ---->" + p.id);
+
+        i++;
+    }*/
+
+    for (var i = 0, len = users.length; i < len; i++) {
+        var p = users[i];
+
+       console.log(user.id + " trying to connect , already connected IDs ---->" + p.id);
+
+        if (p.id) {
+
+            if (p.id == user.id) {
+                console.log(p.id + "--->" + user.id + "user already connected ----> disconnect");
+
+                users.splice(i, 1);
+                user_exist = true;
+
+
+            } else {
+                user_exist = false;
+
+
+            }
+
+        }
+
+
+
+    }
+
+    return user_exist;
+
+};
+
+io.sockets.on('connection', function (socket) {
 
 
     socket.on('chat_init', function (user_id) {
 
-        console.log("new logged ID ----->" + user_id);
+
         var user = new Object();
         user.id = user_id;
         user.socket = socket.id;
-        users.push(user);
+
+       /* if (!is_user_connected(user)) {
+
+            console.log("new logged ID ----->" + user_id);
+            users.push(user);
+
+        }*/
+
+        disconnect(user);
+        //users.push(user);
+        //users.push(user);
+        //console.log("new user connected ");
+
+
     });
 
     socket.on('disconnect', function () {
