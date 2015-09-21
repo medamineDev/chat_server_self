@@ -255,7 +255,7 @@ class HomeController extends Controller
         $id_sender = Input::get('my_id');
         $id_receiver = Input::get('id_user_chat');
 
-        $response = Message::where('id_sender', $id_sender)->where('id_receiver', $id_receiver)->orWhere('id_sender', $id_receiver)->Where('id_receiver', $id_sender)->Paginate(15);
+        $response = Message::where('id_sender', $id_sender)->where('id_receiver', $id_receiver)->orWhere('id_sender', $id_receiver)->Where('id_receiver', $id_sender)->orderBy('id_message', 'DESC')->Paginate(15);
 
 
         return $response;
