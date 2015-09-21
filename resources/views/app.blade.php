@@ -60,16 +60,14 @@
 
                 @foreach($users as $user)
 
-                    <li class="user_chat animation-slideExpandUp" ><a
+                    <li class="user_chat animation-slideExpandUp"><a
                                 href="javascript:void(0)"
                                 onclick="set_my_id('{{ $user->user_id }}','{{ $user->user_name }}','{{ $user->user_image }}')"><img
                                     title="{{ $user->user_name  }}"
-                                    src="{{ $user->user_image }}" ></a>
+                                    src="{{ $user->user_image }}"></a>
                     </li>
 
                 @endforeach
-
-
 
 
             </ul>
@@ -77,19 +75,16 @@
 
             <ul class="nav navbar-nav navbar-right" style="display: none">
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false">test <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false">test <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 
-                        </ul>
-                    </li>
+                    </ul>
+                </li>
 
             </ul>
-
-
-
 
 
             <ul class="nav navbar-nav navbar-right" style="display: none">
@@ -121,8 +116,6 @@
 
     var host = "http://" + window.location.host;
     var sock_host = window.location.hostname;
-    console.log("host ---->" + host);
-    console.log("sock_host ---->" + sock_host);
     var logged_user = [];
 
 
@@ -144,13 +137,6 @@
         });
 
     }
-
-   /* get_logged_user(function (response) {
-
-        logged_user = response;
-        socket.emit('chat_init', response.user_id);
-
-    });*/
 
 
 </script>

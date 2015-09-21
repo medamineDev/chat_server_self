@@ -21,15 +21,6 @@ app.all('/*', function (req, res, next) {
 });
 
 
-/* run forever
-
- npm install forever -g
-
- forever start server.js
-
- */
-
-
 var Client = require('node-rest-client').Client;
 
 var client = new Client();
@@ -66,7 +57,7 @@ io.sockets.on('connection', function (socket) {
         var user = new Object();
         user.id = user_id;
         user.socket = socket.id;
-        /* Disconnect if the user is connected */
+        /* Disconnect if the user has other opened sessions */
         disconnect(user);
 
 
@@ -87,8 +78,6 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('message', function (data, logged_user_id, id_user) {
 
-        console.log("new message  from" + logged_user_id + " to " + id_user);
-
 
         var args = {
             data: {id_sender: id_user, id_receiver: logged_user_id, message_body: data},
@@ -102,9 +91,7 @@ io.sockets.on('connection', function (socket) {
             var len = 0;
             for (var i = 0, len = users.length; i < len; ++i) {
                 var p = users[i];
-                console.log("inside loop");
                 if (p.id == id_user) {
-                    console.log("user found !");
                     io.to(p.socket).emit('message', data);
                     break;
                 }

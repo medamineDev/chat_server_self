@@ -145,7 +145,7 @@
         socket.on('is_typing', function (js_data) {
             $('.is_typing').html(js_data + ' is typing');
 
-            console.log(js_data + ' is typing');
+
             if (!is_typing_flag) {
 
                 $('.is_typing').animate({'opacity': 1}, 500);
@@ -188,15 +188,11 @@
         function set_my_id(id, user_name, user_avatar) {
 
 
-            // $('.user_chat').removeClass("active_user");
-            //$('#' + id).addClass("active_user");
             $('#choosen_user').html(user_name);
-            console.log("my_id ---> " + id);
-            console.log("my_name ---> " + user_name);
-            console.log("my_avatar --->" + user_avatar);
             logged_user_name = user_name;
             logged_user_id = id;
             socket.emit('chat_init', id);
+
 
         }
 
@@ -207,9 +203,6 @@
             $('.user_chat').removeClass("active_user");
             $('#' + id).addClass("active_user");
             $('#choosen_user').html(user_name);
-            console.log("id ---> " + id);
-            console.log("name ---> " + user_name);
-            console.log("avatar --->" + user_avatar);
             receiver_id = id;
             receiver_avatar = user_avatar;
 
