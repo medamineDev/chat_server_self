@@ -76,40 +76,45 @@ class HomeController extends Controller
     }
 
 
-
-
-
-
-
     public function registered_phones_api()
     {
 
-        $var = $input = Input::all();
+        $input = Input::all();
         $var = $input['contacts'];
         $arr = explode(",", $var);
+
         $existing_contacts = [];
-        $i = 0;
         $lenght = count($arr) - 1;
-
-
+        $i = 0;
         while ($i <= $lenght) {
-            if ($i == 0) {
 
-                $tarr = trim($arr[$i], '[');
 
+            if ($lenght <= 0) {
+                $tarr_left = trim($arr[$i], '[');
+                $tarr = trim($tarr_left, ']');
                 $user_phone = $tarr;
-
-
-            } elseif ($i == $lenght) {
-
-
-                $tarr = trim($arr[$i], ']');
-                $user_phone = $tarr;
-
-
             } else {
 
-                $user_phone = $arr[$i];
+                if ($i == 0) {
+
+                    $tarr = trim($arr[$i], '[');
+
+                    $user_phone = $tarr;
+
+
+                } elseif ($i == $lenght) {
+
+
+                    $tarr = trim($arr[$i], ']');
+                    $user_phone = $tarr;
+
+
+                } else {
+
+                    $user_phone = $arr[$i];
+                }
+
+
             }
 
 
@@ -121,7 +126,6 @@ class HomeController extends Controller
                 $existing_contacts[] = array('id' => $user_id, 'number' => $user_phone);
 
             }
-
 
             $i++;
 
